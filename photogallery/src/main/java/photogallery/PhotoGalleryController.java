@@ -2,6 +2,7 @@ package photogallery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,13 +21,22 @@ public class PhotoGalleryController {
     PhotoGalleryService board;
 
     private final String basePath = "/tmp/upload/";
+//
+//    @RequestMapping("/index")
+//    public ModelAndView index() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("list", board.getList());
+//        modelAndView.setViewName("index");
+//        return modelAndView;
+//    }
+
 
     @RequestMapping("/index")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("list", board.getList());
-        modelAndView.setViewName("index");
-        return modelAndView;
+    public Model index(Model model) {
+
+        model.addAttribute("list", board.getList());
+
+        return "index";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
