@@ -36,7 +36,7 @@ public class PhotoGalleryController {
 
         model.addAttribute("list", board.getList());
 
-        return "index";
+        return model;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
